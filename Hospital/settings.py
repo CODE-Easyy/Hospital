@@ -124,10 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 AUTH_USER_MODEL = 'accounts.Doctor'
-=======
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
->>>>>>> 22c3b17cb5c5c4569b6a83de7ccfbafda08f069c
