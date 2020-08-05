@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
@@ -107,3 +108,9 @@ static_collected
 
 # Exclude machine-specific vs code settings
 .vscode/settings.json
+*.cpython-38.pyc
+accounts/migrations/__pycache__/__init__.cpython-38.pyc
+accounts/migrations/__pycache__/0001_initial.cpython-38.pyc
+hospitals/migrations/__pycache__/__init__.cpython-38.pyc
+hospitals/migrations/__pycache__/0001_initial.cpython-38.pyc
+
