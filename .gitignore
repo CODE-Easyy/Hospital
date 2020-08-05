@@ -1,7 +1,7 @@
 __pycache__/
-migrations/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
