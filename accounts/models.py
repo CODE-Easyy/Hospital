@@ -43,13 +43,13 @@ class AccountManager(BaseUserManager):
 
 
 class Doctor(AbstractBaseUser, PermissionsMixin):
+	picture = models.ImageField(blank = True, null = True)
 	email = models.EmailField(unique = True)
 	name = models.CharField(max_length = 150)
 	lastname = models.CharField(max_length = 150)
 	phone = models.CharField(max_length = 50)
 	working_place = models.ForeignKey(Hospital, on_delete = models.CASCADE, null = True)
 	role = models.CharField(max_length = 50)
-	picture = models.ImageField(blank = True, null = True)
 	is_accept = models.BooleanField(default = False)
 
 

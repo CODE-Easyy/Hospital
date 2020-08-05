@@ -15,7 +15,7 @@ from .forms import RegistrationForm, UserLoginForm
 
 
 
-class RegistraionView(CreateView):
+class RegistrationView(CreateView):
 	template_name = 'accounts/register.html'
 	form_class = RegistrationForm
 
@@ -33,6 +33,54 @@ class RegistraionView(CreateView):
 		if next_url:
 			success_url += '?next = {}'.format(next_url)
 		return success_url
+
+
+
+def login_page(request):
+	form = UserLoginForm(request.POST or None)
+	next_ = request.GET.get('next')
+
+	if form.is_valid():
+		email = request.POST.get('email')
+		password = request.POST.get('password')
+
+		try:
+			temp_user = Doctor.objects.get(email = email)
+			if temp_user.is_accept:
+				user = authenticate(email = email.strip(), password = password.strip())
+
+				login(request, user)
+				next_post = request.POST.get('next')
+				redirect_path = next_ or next_post or '/'
+
+				return redirect(redirect_path)
+			else:
+				context = {'form':form, 'error': 'ALMAZ KOTAK'}
+				return render(request, 'accounts/login.html', context)
+
+		except Doctor.DoesNotExist:
+			pass
+
+
+
+	return render(request, 'accounts/login.html', {'form':form})
+
+
+class ProfileView(UpdateView):
+	model = Doctor
+	fields = ['name','lastname', 'phone','working_place','role', 'picture']
+	template_name = 'accounts/profile.html'
+
+
+	def get_success_url(self):
+		return reverse('home')
+
+
+
+	def get_object(self):
+		return self.request.user
+
+
 
 
 

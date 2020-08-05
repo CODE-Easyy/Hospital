@@ -17,9 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import home
+from accounts.views import RegistrationView, login_page, ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),  
-    path('admin_panel/hospitals/', include(('hospitals.urls', 'hospital'))),
+    path('hospital/', include(('hospitals.urls', 'hospital'))),
+    path('register/', RegistrationView.as_view(), name = 'register'),
+    path('login/', login_page, name = 'login'),
+    path('profile/', ProfileView.as_view(), name='home'),
+
+    
 ]
