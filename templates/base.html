@@ -16,7 +16,7 @@
   <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
-        {% if user.is_admin  %}
+        {% if user.is_staff  %}
 
         <nav id="sidebar">
             <div class="sidebar-header">
@@ -31,7 +31,7 @@
                 <li>
                     <a href="" aria-expanded="false">Запросы</a>
                     <a href="" aria-expanded="false">Doctors</a>
-                    <a href="" aria-expanded="false">Hospitals</a>
+                    <a href="{% url 'hospital:home' %}" aria-expanded="false">Hospitals</a>
                     
                     
                 </li>
