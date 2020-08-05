@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Requests{% endblock  %}
+
+
+{% block content %}
+<table class="table table-dark table-striped">
+  <tr>
+   <th scope="col">ID</th>
+   <td scope="row">{{object.id}}</td> 
+  </tr>
+  <tr>
+   <th scope="col">Firstname</th>
+   <td scope="row">{{object.name}}</td>
+  </tr>
+  <tr>
+   <th scope="col">Lastname</th>
+   <td scope="row">{{object.lastname}}</td>
+  </tr>
+  <tr>
+   <th scope="col">Email</th>
+   <td scope="row">{{object.emial}}</td>
+  </tr>
+  <tr>
+   <th scope="col">Phone</th>
+   <td scope="row">{{object.phone}}</td>
+  </tr>
+  <tr>
+   <th scope="col">Working place</th>
+   <td scope="row">{{object.working_place}}</td>
+  </tr>
+  <tr>
+   <th scope="col">Role</th>
+   <td scope="row">{{object.role}}</td>
+  </tr>
+  
+
+</table>
+{% endblock  %}
