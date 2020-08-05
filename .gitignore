@@ -1,4 +1,5 @@
 __pycache__/
+migrations/
 *.py[cod]
 *$py.class
 
@@ -107,3 +108,4 @@ static_collected
 
 # Exclude machine-specific vs code settings
 .vscode/settings.json
+*.cpython-38.pyc
