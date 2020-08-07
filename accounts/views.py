@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import TemplateView
 from django.urls import reverse
 
 from .models import Doctor
@@ -68,32 +69,22 @@ def login_page(request):
 class ProfileView(UpdateView):
 	model = Doctor
 	fields = ['name','lastname', 'phone','working_place','role', 'picture']
-	template_name = 'accounts/profile.html'
+	template_name = 'accounts/profile-update.html'
 
 
 	def get_success_url(self):
 		return reverse('home')
 
 
-
 	def get_object(self):
 		return self.request.user
 
 
-# def profile_update(request):
-# 	form = ProfileUpdate(request.POST or None)
-# 	if form.is_valid():
-# 		email = form.cleaned_data.get("email")
-# 		phone = form.cleaned_data.get("phone")
+class HomeView(TemplateView):
+	template_name = 'accounts/profile.html'
 
-# 		user = request.user
 
-# 		user.email = email
-# 		user.phone = phone
 
-# 		user.save()
-# 		return render(request, 'accounts/profile.html', {'form':form})
-# 	return render(request, 'accounts/profile.html', {'form':form})
 
 
 

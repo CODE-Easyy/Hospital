@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container" style="border: solid; border-width: 2px; border-color: black; padding: 20px; border-radius: 5%;">
+	<h2 style="text-align: center;"> Новый пациент</h2>
+	<p>Заполните данные для добавления пациента. </p> 
+	<hr>
+  <form action="" method="post" style="padding: 10px 10px 10px 10px;"> {% csrf_token %}
+	<div class="row" style="margin-top: 30px">
+		<div class="col-md-12 input-group">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id=""> ФИО*</span>
+  			</div>
+  			{{form.firstname}}
+  			{{form.lastname}}
+  			{{form.middlename}}
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 30px">
+  		<div class="input-group mb-3 ">
+  			<div class="input-group-prepend col-md-6">
+      			<label class="input-group-text" for="inputGroupSelect01">Дата рождения*</label>
+      			{{form.birth_date}}
+    			</div>
+  			
+
+  			<div class="input-group-prepend col-md-2">
+      			<label class="input-group-text" for="inputGroupSelect01">Пол*</label>
+      			{{form.gender}}
+    			</div>
+
+    			<div class="input-group-prepend col-md-4">
+      			<label class="input-group-text" for="inputGroupSelect01">Cемейный статус*</label>
+      			{{form.status}}
+    			</div>
+  		</div>
+  	</div>
+  	<div class="row" style="margin-top: 30px">
+  			<div class="input-group-prepend col-md-6">
+      			<label class="input-group-text" for="inputGroupSelect01">Образование*</label>
+      			{{form.education}}
+    			</div>
+
+    			<div class="input-group-prepend col-md-6">
+      			<label class="input-group-text" for="inputGroupSelect01">Деятельность*</label>
+      			{{form.activity}}
+    			</div>
+  	</div>
+  	<hr>
+
+  	<div class="row" style="margin-top: 30px">
+  		<div class="input-group-prepend col-md-6">
+      		<label class="input-group-text" for="inputGroupSelect01">Номер карты пациента*</label>
+      		{{form.phone}}
+    		</div>
+    		<div class="input-group-prepend col-md-6">
+      		<label class="input-group-text" for="inputGroupSelect01">Клинический диагноз*</label>
+      		{{form.diagnos}}
+    		</div>
+  	</div>
+
+  	<div class="row" style="margin-top: 30px; margin-bottom: 30px">
+  		<div class="input-group-prepend col-md-6">
+      		<label class="input-group-text" for="inputGroupSelect01">Дата диагноза*</label>
+      		{{form.data_diagnos}}
+    		</div>
+
+    		<div class="input-group-prepend col-md-4">
+      		<label class="input-group-text" for="inputGroupSelect01">Суицидальный риск</label>
+      		{{form.suicide}}
+    		</div>
+  	</div>
+  	<hr>
+
+  	<input class="btn btn-info" type="submit" value="Сохранить" >	
+  </form>
+</div>
+{% endblock %}

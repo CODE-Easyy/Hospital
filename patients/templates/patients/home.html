@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+  			$("#tableSearch").on("keyup", function() {
+   				 var value = $(this).val().toLowerCase();
+    			$("#myTable tr").filter(function() {
+     			 	$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    			});
+  			});
+		});
+	</script>
+<body>
+	<div class="container">
+		<form method="post" enctype="multipart/form-data">
+		    {% csrf_token %}
+		    <p>Please select format of file.</p>
+		    <select name="file-format" class="form-control my-3" onchange="document.forms[0].submit();return false;">
+		        <option selected>Choose format...</option>
+		        <option>CSV</option>
+		        <option>JSON</option>
+		        <option>XLS (Excel)</option>
+		      </select>
+		    
+		</form>
+	</div>
+		<div class="display-4 text-center my-4" style="padding: 20px">
+			<h2>Лечебные учреждения</h2>
+			<a href="{% url 'patient:create' %}">
+				<button type="button" class="btn btn-outline-dark" style="float: right;">+ ДОБАВИТЬ УЧРЕЖДЕНИЕ</button>
+			</a>
+		</div>
+		<input class="form-control mb-4" id="tableSearch" type="text" placeholder="Type something to search list items">
+	 	 <table class="table table-striped">
+	 	 	<thead class="thead-dark">
+			      <tr>
+			        <th>Имя</th>
+			        <th>Фамилия</th>
+			        <th>Очество</th>
+			        <th>Действия</th>
+			        <th>&nbsp;</th>
+			        <th>&nbsp;</th>
+			      </tr>
+		    	</thead>
+			    <tbody id="myTable">
+			    {% for object in patients %}
+				      <tr>
+				        <td>{{object.firstname}}</td>
+				        <td>{{object.lastname}}</td>
+				        <td>{{object.middlename}}</td>
+				        <td>{{object.activity}}</td>
+				        <td>
+				        	
+				        </td>
+				        <td>
+				        	<a href="{% url 'patient:delete' pk=object.pk %}">
+				        		<button type="button" class="btn btn-danger btn-sm">
+	  								Удалить
+	  							</button>
+				        	</a>
+				        </td>
+				      </tr>
+				{% endfor %}
+			    </tbody>
+	  	</table>
+
+
+		  	<nav aria-label="Page navigation example">
+		  		<ul class="pagination">
+		  			<li class="page-item">
+		  				{% if patients.has_previous %}
+			  				<a class="page-link" href="?page={{ patients.previous_page_number }}" aria-label="Previous">
+			  					<span aria-hidden="true"> &laquo; </span>
+			  				</a>
+			  			{% endif %}
+		  			</li>
+					<li class="page-item">
+						<span class="page-link">
+		            		Page {{ patients.number }} of {{ patients.paginator.num_pages }}
+		        		</span>
+					</li>
+					<li class="page-item">
+						{% if patients.has_next %}
+							<a class="page-link" href="?page={{ patients.next_page_number }}" aria-label="Next">
+								<span aria-hidden="true"> &raquo; </span>
+							</a>
+						{% endif %}
+					</li>
+		  		</ul>
+		  	</nav>
+		</div>
+
+
+{% endblock %}
+
+

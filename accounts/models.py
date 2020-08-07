@@ -43,7 +43,7 @@ class AccountManager(BaseUserManager):
 
 
 class Doctor(AbstractBaseUser, PermissionsMixin):
-	picture = models.ImageField(blank = True, null = True)
+	picture = models.ImageField(default = 'Avatar.png',upload_to = 'users/' ,blank = True, null = True)
 	email = models.EmailField(unique = True)
 	name = models.CharField(max_length = 150)
 	lastname = models.CharField(max_length = 150)

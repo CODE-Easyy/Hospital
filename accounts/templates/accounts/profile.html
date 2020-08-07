@@ -1,20 +1,57 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
 
-<div class="row justify-content-center">
-    <div class="col-4">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Update your profile</h4>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
 
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+				{% if user.picture %}
+					<img src="{{user.picture.url}}" class="float-left" height="300px" width="300px" style="border-radius: 20%;">
+				{% else %}
+					<img src="" alt="Nopicture">
+				{% endif %}
+				
+			</div>
+
+			<div class="col-md-6">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row">Имя: </th>
+							<td> {{user.name}}</td>
+						</tr>
+						<tr>
+							<th scope="row"> Фамилия: </th>
+							<td>{{user.lastname}}</td>
+						</tr>
+						<tr>
+							<th scope="row">Лечебное учреждение:  </th>
+							<td>{{user.working_place}}</td>
+						</tr>
+						<tr>
+							<th scope="row"> Должность: </th>
+							<td>{{user.role}}</td>
+						</tr>
+						<tr>
+							<th scope="row">Номер телефона: </th>
+							<td>{{user.phone}}</td>
+						</tr>
+						<tr>
+							<th scope="row"> Электронный адрес:</th>
+							<td>{{user.email}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<a href="{% url 'profile-update' %}"><button class="btn btn-sm btn-primary shadow-sm">Update Profile</button></a>
+			</div>
+		</div>
+
+
+		
+	</div>
+
+
+
+
 {% endblock %}

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'doctors',
     'requests',
     'hospitals',
+    'patients',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,11 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
-<<<<<<< HEAD
+    'import_export',
 
-
-=======
->>>>>>> ee8a3f96730e8a02b5bcd019ac0b4b1d5046d317
 ]
 
 MIDDLEWARE = [
@@ -136,3 +134,7 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'home'
 # LOGOUT_REDIRECT_URL = 'home'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

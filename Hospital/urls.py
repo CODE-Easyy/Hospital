@@ -16,17 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import home
-from accounts.views import RegistrationView, login_page, ProfileView
+
+from accounts.views import RegistrationView, login_page, ProfileView, HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),  
+    path('', HomeView.as_view(), name = 'home'),
 
     path('hospital/', include(('hospitals.urls', 'hospital'))),
+    path('patient/', include(('patients.urls', 'patient'))),
     path('register/', RegistrationView.as_view(), name = 'register'),
     path('login/', login_page, name = 'login'),
-    path('profile/', ProfileView.as_view(), name='home'),
+
+    path('profile-update', ProfileView.as_view(), name='profile-update'),
 
     
 
@@ -35,3 +37,9 @@ urlpatterns = [
     path('admin_panel/requests/', include(('requests.urls', 'request'))),
 
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
