@@ -22,15 +22,16 @@ from accounts.views import RegistrationView, login_page, ProfileView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),  
-<<<<<<< HEAD
+
     path('hospital/', include(('hospitals.urls', 'hospital'))),
     path('register/', RegistrationView.as_view(), name = 'register'),
     path('login/', login_page, name = 'login'),
     path('profile/', ProfileView.as_view(), name='home'),
 
     
-=======
+
+
     path('admin_panel/hospitals/', include(('hospitals.urls', 'hospital'))),
     path('admin_panel/requests/', include(('requests.urls', 'request'))),
->>>>>>> cdb41c3e7b63277242256f10b58418848e205179
+
 ]

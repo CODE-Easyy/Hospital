@@ -11,14 +11,13 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
 
 from .models import Doctor
-from .forms import RegistrationForm, UserLoginForm
+from .forms import RegistrationForm, UserLoginForm, ProfileUpdate
 
 
 
 class RegistrationView(CreateView):
 	template_name = 'accounts/register.html'
 	form_class = RegistrationForm
-
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(RegistrationView, self).get_context_data(*args, **kwargs)
@@ -80,6 +79,21 @@ class ProfileView(UpdateView):
 	def get_object(self):
 		return self.request.user
 
+
+# def profile_update(request):
+# 	form = ProfileUpdate(request.POST or None)
+# 	if form.is_valid():
+# 		email = form.cleaned_data.get("email")
+# 		phone = form.cleaned_data.get("phone")
+
+# 		user = request.user
+
+# 		user.email = email
+# 		user.phone = phone
+
+# 		user.save()
+# 		return render(request, 'accounts/profile.html', {'form':form})
+# 	return render(request, 'accounts/profile.html', {'form':form})
 
 
 

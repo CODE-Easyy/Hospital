@@ -97,3 +97,10 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Неверный пароль')
 
         return super(UserLoginForm, self).clean(*args, **kwargs)
+
+
+
+class ProfileUpdate(forms.ModelForm):
+	class Meta:
+		model = Doctor
+		fields = ('email', 'phone')

@@ -7,8 +7,7 @@ from accounts.models import Doctor
 
 
 def home(request):
-  if request.GET.get(id):
-    print(request.GET.get(id))
+
   not_accepted_doctors = Doctor.objects.filter(is_accept=False, is_staff=False)
   # not_accepted_doctors = Doctor.objects.all()
   context = {'objects': not_accepted_doctors}
